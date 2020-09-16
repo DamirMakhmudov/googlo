@@ -16,7 +16,7 @@ function readGoogleData(spreadSheetId, sheet, range){
 
 
 function getAccessToken(){
-    console.log('---getAccessToken---');
+    console.log('---getAccessToken--');
     var clientId = '26731186254-odugkqn68d6d1g6tj3kjpvf299vk9e95.apps.googleusercontent.com';
     var clientSecret = 'E44LiAGNh1uCLT4HRINzjJbM';
     var refreshToken = '1//04u7UiETSPmfHCgYIARAAGAQSNwF-L9IrvvzDfyINUWLOiZwvfBa-AulQ_SO6wsuIDef_8L7PTcM4q_YPZVwsd2zE1iggbj1Qnts';
