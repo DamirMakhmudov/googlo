@@ -15,10 +15,7 @@ function getAccessToken(){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url);
     xhr.send(JSON.stringify(payload));
-    // xhr.
-    xhr.onload =  function(){
-        // console.log('here');
-        // console.log('access tiken', JSON.parse(xhr.responseText).access_token)
+        xhr.onload =  function(){
         accessToken = JSON.parse(xhr.responseText).access_token;
     }
 }
