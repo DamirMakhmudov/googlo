@@ -1,3 +1,5 @@
+var accessToken;
+
 function getAccessToken(){
     console.log('---getAccessToken---');
     var clientId = '26731186254-odugkqn68d6d1g6tj3kjpvf299vk9e95.apps.googleusercontent.com';
@@ -17,6 +19,6 @@ function getAccessToken(){
     xhr.onload =  function(){
         // console.log('here');
         // console.log('access tiken', JSON.parse(xhr.responseText).access_token)
-        return JSON.parse(xhr.responseText).access_token;
+        accessToken = JSON.parse(xhr.responseText).access_token;
     }
 }
