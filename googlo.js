@@ -1,5 +1,20 @@
 var accessToken;
 
+function readGoogleData(spreadSheetId, sheet, range){    
+    console.log('---readGoogleData---');
+    var url = "https://sheets.googleapis.com/v4/spreadsheets/" + spreadSheetId + "/values/" + sheet + "!" + range + "?majorDimension=ROWS";
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.setRequestHeader('Authorization','Bearer ' + accessToken);
+    xhr.send();
+    xhr.onload = function(){
+        console.log(xhr.status);
+        console.log(xhr.statusText);
+        console.log(xhr.response);
+    }
+ }
+
+
 function getAccessToken(){
     console.log('---getAccessToken---');
     var clientId = '26731186254-odugkqn68d6d1g6tj3kjpvf299vk9e95.apps.googleusercontent.com';
