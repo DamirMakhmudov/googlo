@@ -14,10 +14,7 @@ function readGoogleData_old(spreadSheetId, sheet, range){
     }
  }
 
-
-
- 
-function getat_old(){
+function geToken_old(){
     console.log('---getat--');
     var clientId = '26731186254-odugkqn68d6d1g6tj3kjpvf299vk9e95.apps.googleusercontent.com';
     var clientSecret = 'E44LiAGNh1uCLT4HRINzjJbM';
