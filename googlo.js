@@ -1,7 +1,7 @@
 var at, ci, cs, rt;
 
 function getCredentials(){
-    console.log('---getCredentials--!eeeeeee-')
+    console.log('---getCredentials---1')
     google.script.run.withSuccessHandler(
       function (credentials){
         console.log(credentials);
