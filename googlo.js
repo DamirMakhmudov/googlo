@@ -1,10 +1,9 @@
 var at, ci, cs, rt;
 
 function getCredentials(){
-    console.log('---getCredentials---7')
+    console.log('---getCredentials---')
     google.script.run.withSuccessHandler(
       function (credentials){
-        console.log(credentials);
         ci = credentials.clientId;
         cs = credentials.clientSecret;
         rt = credentials.refreshToken;
