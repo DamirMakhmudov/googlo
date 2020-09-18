@@ -1,3 +1,4 @@
+<script>
 var at, ci, cs, rt;
 
 function getCredentials(){
@@ -12,6 +13,7 @@ function getCredentials(){
     ).getCredentials();
   }
 
+</script>
 // function readGoogleData_old(spreadSheetId, sheet, range){    
 //     console.log('---readGoogleData---');
 //     var url = "https://sheets.googleapis.com/v4/spreadsheets/" + spreadSheetId + "/values/" + sheet + "!" + range + "?majorDimension=ROWS";
