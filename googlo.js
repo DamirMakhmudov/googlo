@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
 var at, ci, cs, rt;
 
 function getCredentials(){
