@@ -11,13 +11,6 @@ function getCredentials(){
   ).getCredentials();
 }
 
-function getCredentialsDev(){
-  console.log('---getCredentialsDev---')
-  ci = '26731186254-odugkqn68d6d1g6tj3kjpvf299vk9e95.apps.googleusercontent.com';
-  cs = 'E44LiAGNh1uCLT4HRINzjJbM';
-  rt = '1//04u7UiETSPmfHCgYIARAAGAQSNwF-L9IrvvzDfyINUWLOiZwvfBa-AulQ_SO6wsuIDef_8L7PTcM4q_YPZVwsd2zE1iggbj1Qnts';
-}
-
 async function getAccessToken(){
   let url = 'https://oauth2.googleapis.com/token';
   var payload = {
