@@ -31,7 +31,7 @@ async function readGoogleData(spreadSheetId, sheet, range){
   let res = await fetch(url, {
     method: 'GET',
     headers: {
-      'Authorization': 'Bearer ' + accessToken
+      'Authorization': 'Bearer ' + at
     }
   });
   return await res.json();
@@ -47,7 +47,7 @@ async function putGoogleData(spreadSheetId, sheet, range, values){
   let res = await fetch(url, {
     method: 'PUT',
     headers: {
-      'Authorization': 'Bearer ' + accessToken
+      'Authorization': 'Bearer ' + at
     },
     body:JSON.stringify(obj)
   });
