@@ -1,46 +1,81 @@
-var at, ci, cs, rt;
+var ci, cs, rt, at;
 
 function getCredentials(){
-    console.log('---getCredentials---')
-    google.script.run.withSuccessHandler(
-      function (credentials){
-        ci = credentials.clientId;
-        cs = credentials.clientSecret;
-        rt = credentials.refreshToken;
-      }
-    ).getCredentials();
-  }
+  console.log('---getCredentials---')
+  google.script.run.withSuccessHandler(
+    function (credentials){
+      ci = credentials.clientId;
+      cs = credentials.clientSecret;
+      rt = credentials.refreshToken;
+    }
+  ).getCredentials();
+}
 
-// function readGoogleData_old(spreadSheetId, sheet, range){    
-//     console.log('---readGoogleData---');
-//     var url = "https://sheets.googleapis.com/v4/spreadsheets/" + spreadSheetId + "/values/" + sheet + "!" + range + "?majorDimension=ROWS";
-//     var xhr = new XMLHttpRequest();
-//     xhr.open("GET", url);
-//     xhr.setRequestHeader('Authorization','Bearer ' + at);
-//     xhr.send();
-//     xhr.onload = function(){
-//         console.log(xhr.status);
-//         console.log(xhr.statusText);
-//         console.log(xhr.response);
-//     }
-//  }
+function getCredentialsDev(){
+  console.log('---getCredentialsDev---')
+  ci = '26731186254-odugkqn68d6d1g6tj3kjpvf299vk9e95.apps.googleusercontent.com';
+  cs = 'E44LiAGNh1uCLT4HRINzjJbM';
+  rt = '1//04u7UiETSPmfHCgYIARAAGAQSNwF-L9IrvvzDfyINUWLOiZwvfBa-AulQ_SO6wsuIDef_8L7PTcM4q_YPZVwsd2zE1iggbj1Qnts';
+}
 
-// function geToken_old(){
-//     console.log('---getat--');
-//     var clientId = '26731186254-odugkqn68d6d1g6tj3kjpvf299vk9e95.apps.googleusercontent.com';
-//     var clientSecret = 'E44LiAGNh1uCLT4HRINzjJbM';
-//     var refreshToken = '1//04u7UiETSPmfHCgYIARAAGAQSNwF-L9IrvvzDfyINUWLOiZwvfBa-AulQ_SO6wsuIDef_8L7PTcM4q_YPZVwsd2zE1iggbj1Qnts';
-//     var url = 'https://oauth2.googleapis.com/token';
-//     var payload = {
-//         client_id: clientId,
-//         client_secret: clientSecret,
-//         refresh_token: refreshToken,
-//         grant_type: 'refresh_token'
-//     };
-//     var xhr = new XMLHttpRequest();
-//     xhr.open("POST", url);
-//     xhr.send(JSON.stringify(payload));
-//         xhr.onload =  function(){
-//         at = JSON.parse(xhr.responseText).access_token;
-//     }
-// }
+async function getAccessToken(){
+  let url = 'https://oauth2.googleapis.com/token';
+  var payload = {
+    client_id: clientId,
+    client_secret: clientSecret,
+    refresh_token: refreshToken,
+    grant_type: 'refresh_token'
+  };
+  let res = await fetch(url, {
+    method: 'POST',
+    body:JSON.stringify(payload)
+  });
+  return await res.json();
+}
+
+async function readGoogleData(spreadSheetId, sheet, range){    
+  let url = "https://sheets.googleapis.com/v4/spreadsheets/" + spreadSheetId + "/values/" + sheet + "!" + range + "?majorDimension=ROWS";
+  let res = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + accessToken
+    }
+  });
+  return await res.json();
+}
+
+async function putGoogleData(spreadSheetId, sheet, range, values){
+  var url = "https://sheets.googleapis.com/v4/spreadsheets/" + spreadSheetId + "/values/" + sheet + "!" + range + "?valueInputOption=USER_ENTERED";
+  var obj = {
+    "range": sheet + "!" + range,
+    "majorDimension": "ROWS",
+    "values": values
+  }   
+  let res = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Authorization': 'Bearer ' + accessToken
+    },
+    body:JSON.stringify(obj)
+  });
+  return await res.json();
+}
+
+// ---draft---
+
+function testo(){
+  var sc = document.createElement('script');
+  sc.type = "text/javascript";
+  testo2().then((data) => {
+  sc.innerHTML = data;
+    document.head.appendChild(sc);
+  });
+}
+
+async function testo2(){
+  let url = "https://raw.githubusercontent.com/DamirMakhmudov/googlo/master/googlo.js";
+  let res = await fetch(url, {
+    method: 'GET'
+  });
+  return await res.text();
+}
