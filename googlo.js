@@ -14,9 +14,9 @@ function getCredentials(){
 async function getAccessToken(){
   let url = 'https://oauth2.googleapis.com/token';
   var payload = {
-    client_id: clientId,
-    client_secret: clientSecret,
-    refresh_token: refreshToken,
+    client_id: ci,
+    client_secret: cs,
+    refresh_token: rt,
     grant_type: 'refresh_token'
   };
   let res = await fetch(url, {
