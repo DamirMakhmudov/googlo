@@ -23,8 +23,54 @@ async function getAccessToken(){
     method: 'POST',
     body:JSON.stringify(payload)
   });
-  return await res.json();
+  return await res.json()
 }
+
+async function bbb(spreadSheetId, requests){
+    // await delay(2000);
+    at = await getAccessToken();
+    // return rr;
+    at = at.access_token;
+    // console.log(at);
+    // console.log('here');
+    var tt = batchUpdate(spreadSheetId, requests);
+    return tt;
+}
+
+async function batchUpdate(spreadSheetId, requests){
+  var url = "https://sheets.googleapis.com/v4/spreadsheets/" + spreadSheetId + ":batchUpdate";
+
+  var req = {
+      "requests": requests
+      // "includeSpreadsheetInResponse": false
+      // "responseRanges": [
+          // string
+      // ],
+      // "responseIncludeGridData": 
+  }
+
+  let res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + at
+    },
+    body:JSON.stringify(req)
+  });
+  return res.status;
+//   return await res.json();
+}
+
+// find and replace
+// "findReplace":{
+//     "find": "Alice",
+//     "replacement": "Pol",
+//     "matchCase": false,
+//     "matchEntireCell": false,
+//     "searchByRegex": false,
+//     "includeFormulas": false,
+//     "sheetId": 0,
+// }
 
 async function readGoogleData(spreadSheetId, sheet, range){    
   let url = "https://sheets.googleapis.com/v4/spreadsheets/" + spreadSheetId + "/values/" + sheet + "!" + range + "?majorDimension=ROWS";
@@ -52,23 +98,4 @@ async function putGoogleData(spreadSheetId, sheet, range, values){
     body:JSON.stringify(obj)
   });
   return await res.json();
-}
-
-// ---draft---
-
-function testo(){
-  var sc = document.createElement('script');
-  sc.type = "text/javascript";
-  testo2().then((data) => {
-  sc.innerHTML = data;
-    document.head.appendChild(sc);
-  });
-}
-
-async function testo2(){
-  let url = "https://raw.githubusercontent.com/DamirMakhmudov/googlo/master/googlo.js";
-  let res = await fetch(url, {
-    method: 'GET'
-  });
-  return await res.text();
 }
