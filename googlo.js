@@ -26,13 +26,10 @@ async function getAccessToken(){
   return await res.json()
 }
 
-async function bbb(spreadSheetId, requests){
-    // await delay(2000);
+async function pasteData(spreadSheetId, requests){
     at = await getAccessToken();
-    // return rr;
     at = at.access_token;
-    // console.log(at);
-    // console.log('here');
+    var rrr = [];
     var tt = batchUpdate(spreadSheetId, requests);
     return tt;
 }
