@@ -8,5 +8,3 @@ insert next code to your html
 ```js
 <script onload="getAccessToken()" src="https://rawcdn.githack.com/DamirMakhmudov/googlo/2093ba895c158f39297533dfe0856c31e2b07f5f/googlo.js" async defer></script>
 ```
- ыщьу
- =
